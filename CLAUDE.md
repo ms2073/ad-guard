@@ -17,6 +17,9 @@ brief -> writer (3 variants) -> reviewer -> [fixer -> reviewer, max 2 loops] -> 
   then an **LLM claim pass**: extract each claim, classify against rules, cite rule IDs.
 - A violation from either pass blocks. The LLM may add findings; it cannot clear a deterministic hit.
 - `human_gate` is a CLI prompt. No auto-publish path exists, not even behind a flag.
+- On reject, `human_gate` asks for a reason and rule ID, then appends `{text, reason, rule_ids, ts}` to
+  `feedback.jsonl`. Nothing reads that file automatically. Corrections become eval cases or rules only
+  after human review, and the eval must pass before any change ships. No self-modifying prompts, no auto-retraining.
 
 ## Constraints
 - Python 3.11+, `anthropic` SDK, `pydantic`. No frameworks. One file per stage under `adguard/`.
