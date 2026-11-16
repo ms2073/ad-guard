@@ -31,7 +31,9 @@ brief -> writer (3 variants) -> reviewer -> [fixer -> reviewer, max 2 loops] -> 
 ## Evals
 - `python -m evals.run` scores the reviewer on `evals/cases.jsonl`.
 - Report per-rule precision/recall and overall violation recall.
-- **Exit non-zero if violation recall < 0.95 or any `must_catch` case is missed.** This is the regression gate.
+- Score twice: rules + LLM together, and the LLM pass alone (it's the backstop for wording regex can't see).
+- **Exit non-zero if combined recall < 0.95, any `must_catch` case is missed, or LLM-only recall < 0.85.**
+  This is the regression gate.
 - Never use an LLM judge for scoring. Labels are ground truth.
 
 ## Done means
