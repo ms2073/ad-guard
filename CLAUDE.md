@@ -20,7 +20,8 @@ brief -> writer (3 variants) -> reviewer -> [fixer -> reviewer, max 2 loops] -> 
 
 ## Constraints
 - Python 3.11+, `anthropic` SDK, `pydantic`. No frameworks. One file per stage under `adguard/`.
-- Model IDs come from env (`ADGUARD_MODEL`), default `claude-sonnet-5-5`.
+- Model IDs come from env (`ADGUARD_MODEL`, default `claude-sonnet-5-5`; `ADGUARD_SMALL_MODEL`, default `claude-haiku-5-5`).
+- If a router is added: no LLM call to decide, unsure always means the big model, and it ships only if eval recall matches always-big.
 - Prompts live in `adguard/prompts/*.md`, not inline strings, so evals can diff them.
 - Don't add features I didn't ask for (no web UI, no DB, no async). Ask before adding a dependency.
 
