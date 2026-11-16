@@ -22,9 +22,18 @@ brief -> writer (3 variants) -> reviewer -> [fixer -> reviewer, max 2 loops] -> 
   after human review, and the eval must pass before any change ships. No self-modifying prompts, no auto-retraining.
 
 ## Constraints
-- Python 3.11+, `anthropic` SDK, `pydantic`. No frameworks. One file per stage under `adguard/`.
-- Model IDs come from env (`ADGUARD_MODEL`, default `claude-sonnet-5-5`; `ADGUARD_SMALL_MODEL`, default `claude-haiku-5-5`).
-- If a router is added: no LLM call to decide, unsure always means the big model, and it ships only if eval recall matches always-big.
+- Python 3.11+, `httpx`, `pydantic` (see requirements.txt; deps are already in `.venv`). No frameworks, no other SDKs.
+  One file per stage under `adguard/`.
+- Models via OpenGateway (`https://apis.opengateway.ai/v1`, Bearer `OPENGATEWAY_API_KEY`, loaded from `.env`):
+  - generation: `POST /chat/completions` (OpenAI-compatible, `response_format` json_schema with `strict: true`),
+    model from `ADGUARD_MODEL`, default `z-ai/glm-5.3-flash-ultrafast`.
+  - decisions: `POST /decisions` with typed `noul` questions -> probability 0-1, no text generated,
+    model from `ADGUARD_DECISION_MODEL`, default `sionic-ai/jev-omni`.
+- Model output can come back wrapped in labels or notes. Check that writer/fixer output is plain ad copy in code;
+  if it isn't, send it to the human with a note rather than retrying forever.
+- If a router is added: it uses the decision model, never a generative LLM. Skip the LLM pass only when the rules
+  found nothing and every risk probability is < 0.5; any failure means the full pass. It ships only if eval recall
+  with the router matches recall without it.
 - Prompts live in `adguard/prompts/*.md`, not inline strings, so evals can diff them.
 - Don't add features I didn't ask for (no web UI, no DB, no async). Ask before adding a dependency.
 

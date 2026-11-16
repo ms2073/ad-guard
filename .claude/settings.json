@@ -19,8 +19,8 @@
     ]
   },
   "env": {
-    "ADGUARD_MODEL": "claude-sonnet-5-5",
-    "ADGUARD_SMALL_MODEL": "claude-haiku-5-5"
+    "ADGUARD_MODEL": "z-ai/glm-5.3-flash-ultrafast",
+    "ADGUARD_DECISION_MODEL": "sionic-ai/jev-omni"
   },
   "hooks": {
     "PostToolUse": [
