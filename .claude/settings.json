@@ -3,6 +3,9 @@
     "defaultMode": "default",
     "allow": [
       "Bash(python3 -m evals.run:*)",
+      "Bash(.venv/bin/python -m evals.run:*)",
+      "Bash(.venv/bin/python -m pytest:*)",
+      "Bash(.venv/bin/python -m adguard.pipeline:*)",
       "Bash(python3 -m adguard.pipeline:*)",
       "Bash(pytest:*)",
       "Bash(git diff:*)",

@@ -12,7 +12,8 @@ esac
 cd "$CLAUDE_PROJECT_DIR" || exit 0
 [ -f evals/run.py ] || exit 0   # eval harness not built yet
 
-if ! out=$(python3 -m evals.run 2>&1); then
+PY="$CLAUDE_PROJECT_DIR/.venv/bin/python"; [ -x "$PY" ] || PY=python3
+if ! out=$("$PY" -m evals.run 2>&1); then
   echo "EVAL GATE FAILED after editing $file:" >&2
   echo "$out" | tail -25 >&2
   exit 2
