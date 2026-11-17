@@ -22,3 +22,4 @@
 {"id": "c22", "text": "The generic version of Zepbound is here. Compounded tirzepatide, prescription required, provider decides.", "violations": ["R1", "R2"], "must_catch": true}
 {"id": "c23", "text": "Compounded semaglutide is not the same as Ozempic or Wegovy and is not FDA-approved. Prescription required; a licensed provider decides.", "violations": []}
 {"id": "c24", "text": "\"I lost 40 pounds and kept it off!\" - Jessica, verified member. Compounded semaglutide, prescription required, provider decides.", "violations": ["R5", "R6"], "must_catch": true}
+{"id": "c25", "text": "Prefer drops to injections? Ask your provider about compounded tirzepatide drops. Prescription required.", "violations": [], "note": "moved from held-out h23: LLM flagged R7 on a compliant ad"}

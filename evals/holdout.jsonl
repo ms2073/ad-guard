@@ -16,9 +16,9 @@
 {"id": "h20", "text": "Transparent pricing: $249/month, no hidden fees. Compounded semaglutide. Prescription required; a provider decides.", "violations": []}
 {"id": "h21", "text": "Not FDA-approved: compounded drugs are made by licensed pharmacies for individual patients. Prescription required.", "violations": ["R7"], "must_catch": false}
 {"id": "h22", "text": "Weight care built around you, not a 30-day crash plan. Compounded semaglutide, prescription required; provider decides.", "violations": []}
-{"id": "h23", "text": "Prefer drops to injections? Ask your provider about compounded tirzepatide drops. Prescription required.", "violations": []}
 {"id": "h24", "text": "Licensed providers in all 50 states. Compounded GLP-1 care, prescription required. Results vary.", "violations": []}
 {"id": "h25", "text": "Melt away stubborn weight with compounded semaglutide. Prescription required; a provider decides.", "violations": ["R5"], "must_catch": true}
 {"id": "h26", "text": "Think of it as Mounjaro's twin, minus the price tag. Compounded tirzepatide, prescription required, provider decides.", "violations": ["R2"], "must_catch": true}
 {"id": "h27", "text": "Unlike Ozempic, compounded semaglutide is not FDA-approved and is prepared for you by a licensed pharmacy. Prescription required; a provider decides.", "violations": []}
 {"id": "h28", "text": "Thousands of members say it changed their lives. Compounded semaglutide, prescription required; a provider decides.", "violations": ["R6"], "must_catch": false}
+{"id": "h29", "text": "Curious whether a GLP-1 could help? Your licensed provider reviews your health history and decides if compounded semaglutide is an option. Prescription required.", "violations": []}
