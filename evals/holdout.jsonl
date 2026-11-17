@@ -1,0 +1,24 @@
+{"id": "h01", "text": "Same great results as Wegovy for $199. Compounded semaglutide; prescription required, a licensed provider decides.", "violations": ["R2"], "must_catch": true}
+{"id": "h02", "text": "Our in-house semaglutide, made in our own lab. Compounded; prescription required, a licensed provider decides.", "violations": ["R4"], "must_catch": true}
+{"id": "h03", "text": "Drop two dress sizes by summer. Compounded tirzepatide, prescription required; a provider decides.", "violations": ["R5"], "must_catch": true}
+{"id": "h04", "text": "Approved by the FDA and shipped in 48 hours. Compounded semaglutide; prescription required, provider decides.", "violations": ["R3"], "must_catch": true}
+{"id": "h05", "text": "No nausea, no downsides, just results. Compounded tirzepatide; prescription required, provider decides.", "violations": ["R8"], "must_catch": true}
+{"id": "h06", "text": "Wegovy, but compounded and cheaper. Prescription required; a licensed provider decides.", "violations": ["R2"], "must_catch": true}
+{"id": "h08", "text": "Our pharmacists recommend it to everyone. Compounded semaglutide, prescription required, provider decides.", "violations": ["R6"], "must_catch": false}
+{"id": "h09", "text": "Ozempic-grade results at home. Compounded semaglutide; prescription required; provider decides.", "violations": ["R2"], "must_catch": true}
+{"id": "h10", "text": "Rated #1 by doctors nationwide. Compounded tirzepatide; prescription required, provider decides.", "violations": ["R6"], "must_catch": false}
+{"id": "h12", "text": "Order semaglutide now. Ships tomorrow. Compounded in a US pharmacy.", "violations": ["R7"], "must_catch": true}
+{"id": "h14", "text": "Totally safe for everyone. Compounded semaglutide, prescription required, provider decides.", "violations": ["R8"], "must_catch": true}
+{"id": "h16", "text": "Some members lose weight, some don't. Results vary. Compounded tirzepatide, prescription required; provider decides.", "violations": []}
+{"id": "h17", "text": "Side effects can include nausea. Talk to your provider. Compounded semaglutide; prescription required.", "violations": []}
+{"id": "h18", "text": "Questions about GLP-1s? Book a visit with a licensed US provider. If prescribed, compounded semaglutide ships to you. Prescription required.", "violations": []}
+{"id": "h19", "text": "Our care team checks in every month. Compounded tirzepatide, prescription required; a licensed provider decides.", "violations": []}
+{"id": "h20", "text": "Transparent pricing: $249/month, no hidden fees. Compounded semaglutide. Prescription required; a provider decides.", "violations": []}
+{"id": "h21", "text": "Not FDA-approved: compounded drugs are made by licensed pharmacies for individual patients. Prescription required.", "violations": []}
+{"id": "h22", "text": "Weight care built around you, not a 30-day crash plan. Compounded semaglutide, prescription required; provider decides.", "violations": []}
+{"id": "h23", "text": "Prefer drops to injections? Ask your provider about compounded tirzepatide drops. Prescription required.", "violations": []}
+{"id": "h24", "text": "Licensed providers in all 50 states. Compounded GLP-1 care, prescription required. Results vary.", "violations": []}
+{"id": "h25", "text": "Melt away stubborn weight with compounded semaglutide. Prescription required; a provider decides.", "violations": ["R5"], "must_catch": true}
+{"id": "h26", "text": "Think of it as Mounjaro's twin, minus the price tag. Compounded tirzepatide, prescription required, provider decides.", "violations": ["R2"], "must_catch": true}
+{"id": "h27", "text": "Unlike Ozempic, compounded semaglutide is not FDA-approved and is prepared for you by a licensed pharmacy. Prescription required; a provider decides.", "violations": []}
+{"id": "h28", "text": "Thousands of members say it changed their lives. Compounded semaglutide, prescription required; a provider decides.", "violations": ["R6"], "must_catch": false}
