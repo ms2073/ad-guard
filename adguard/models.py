@@ -85,3 +85,14 @@ class EvalCase(BaseModel):
     violations: list[RuleId]
     must_catch: bool = False
     note: str | None = None
+
+
+# --- Writer and fixer outputs ---
+
+class Variants(BaseModel):
+    variants: list[str] = Field(description="Exactly 3 distinct ads, each only the finished ad copy with no labels or notes")
+
+
+class Fix(BaseModel):
+    text: str = Field(description="Only the complete rewritten ad copy, no headings, labels or notes")
+    changes: list[str] = Field(description="One line per change made")

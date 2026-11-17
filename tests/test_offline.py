@@ -207,3 +207,92 @@ def test_main_exits_1_when_the_gate_fails(monkeypatch, capsys):
 def test_main_exits_0_when_the_gate_passes(monkeypatch, capsys):
     monkeypatch.setattr(reviewer, "llm_pass", fake_model(flag_labelled=True))
     assert evals.main(["--repeat", "2"]) == 0 and "GATE (worst of 2 runs): PASS" in capsys.readouterr().out
+
+
+# --- writer / fixer shape checks, fix loop, human gate (fakes only) ---
+
+from adguard import fixer, human_gate, pipeline, shape, writer
+from adguard.models import Fix, Variants
+
+GOOD = "Spring pricing: compounded tirzepatide drops from $199 for the first month. Prescription required; a licensed provider decides."
+
+
+def test_shape_rejects_wrapped_or_truncated_copy():
+    assert shape.problem(GOOD) is None
+    assert shape.problem('**Price angle** — "' + GOOD + '" (~163 chars)')
+    assert shape.problem("Rewritten ad:\n\n" + GOOD + "\n\nChanges made:\n- added R7")
+    assert shape.problem("Variant 1: " + GOOD)
+    assert shape.problem(GOOD[:30] + " compounded.", original=GOOD * 2)
+
+
+def test_every_eval_case_passes_the_shape_check():
+    # real ad copy (compliant or not) must never be mistaken for commentary
+    for c in TUNE:
+        assert shape.problem(c.text) is None, c.id
+
+
+def test_writer_needs_three_clean_variants():
+    assert writer._usable(Variants(variants=[GOOD] * 3)) is None
+    assert writer._usable(Variants(variants=[GOOD] * 2))
+    assert writer._usable(Variants(variants=[GOOD, GOOD, "**Care angle** — " + GOOD]))
+
+
+def test_writer_bad_shape_twice_is_a_model_failure(monkeypatch):
+    bad = json.dumps({"variants": ["**Price angle** — " + GOOD] * 3})
+    monkeypatch.setattr(llm, "_post", lambda path, body: {"choices": [{"message": {"content": bad}}]})
+    with pytest.raises(llm.ModelFailure):
+        writer.write("brief")
+
+
+def _blocked(text):
+    return reviewer.review(text, llm_fn=fake(LLMClaim(quote=text[:10], rule_ids=["R2"], reason="x")))
+
+
+def test_fix_loop_is_capped():
+    calls = []
+    history = pipeline.review_text(GOOD, review_fn=_blocked,
+                                   fix_fn=lambda r: calls.append(1) or Fix(text=GOOD, changes=[]))
+    assert len(calls) == pipeline.MAX_FIX_LOOPS and len(history) == pipeline.MAX_FIX_LOOPS + 1
+    assert history[-1].blocked
+
+
+def test_fixer_failure_keeps_last_version_and_escalates():
+    def bad_fix(r):
+        raise llm.ModelFailure("invalid_output", "fixer output rejected: too short to be an ad")
+    history = pipeline.review_text(GOOD, review_fn=_blocked, fix_fn=bad_fix)
+    assert len(history) == 1 and history[0].text == GOOD
+    assert history[0].escalations[0].stage == "fixer" and history[0].blocked
+
+
+def test_clean_ad_is_not_sent_to_the_fixer():
+    history = pipeline.review_text(GOOD, review_fn=lambda t: reviewer.review(t, llm_fn=fake()),
+                                   fix_fn=lambda r: pytest.fail("fixer called on a clean ad"))
+    assert len(history) == 1 and not history[0].blocked
+
+
+def test_human_gate_logs_rejection_and_approval(tmp_path, monkeypatch):
+    monkeypatch.setattr(human_gate, "FEEDBACK", tmp_path / "feedback.jsonl")
+    monkeypatch.setattr(human_gate, "APPROVED", tmp_path / "approved.jsonl")
+    r = _blocked(GOOD)
+    answers = iter(["n", "implies it's Mounjaro", "r2, R99"])
+    assert human_gate.gate(r, ask=lambda _: next(answers)) == (False, "implies it's Mounjaro")
+    row = json.loads((tmp_path / "feedback.jsonl").read_text())
+    assert row["rule_ids"] == ["R2"] and row["text"] == GOOD and not (tmp_path / "approved.jsonl").exists()
+    assert human_gate.gate(r, ask=lambda _: "y") == (True, "")
+    assert json.loads((tmp_path / "approved.jsonl").read_text())["reviewer_blocked"] is True
+
+
+def test_pipeline_approves_nothing_without_a_yes(tmp_path, monkeypatch):
+    monkeypatch.setattr(human_gate, "FEEDBACK", tmp_path / "feedback.jsonl")
+    monkeypatch.setattr(human_gate, "APPROVED", tmp_path / "approved.jsonl")
+    monkeypatch.setattr(writer, "write", lambda brief: [GOOD] * 3)
+    monkeypatch.setattr(pipeline, "review_text", lambda t: [reviewer.review(t, llm_fn=fake())])
+    records = pipeline.run("brief", ask=lambda _: "")  # person just presses Enter
+    assert len(records) == 3 and not any(r["approved"] for r in records)
+    assert not (tmp_path / "approved.jsonl").exists()
+
+
+def test_no_auto_publish_path_exists():
+    import inspect
+    # only human_gate writes approvals; the pipeline has no other route to approved.jsonl
+    assert "APPROVED" not in inspect.getsource(pipeline) and "approved" not in inspect.getsource(writer)
