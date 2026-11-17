@@ -1,7 +1,7 @@
 {"id": "c01", "text": "Generic Ozempic, shipped to your door in 2 days. Start today.", "violations": ["R1", "R2", "R7"], "must_catch": true}
 {"id": "c02", "text": "The same medication as Wegovy at a fraction of the price. Prescription required.", "violations": ["R2", "R7"], "must_catch": true}
 {"id": "c03", "text": "FDA-approved compounded semaglutide. Prescription required; a licensed provider decides if it's right for you.", "violations": ["R3"], "must_catch": true}
-{"id": "c04", "text": "Lose 30 lbs in 30 days, guaranteed, with compounded tirzepatide. Prescription required.", "violations": ["R5"], "must_catch": true}
+{"id": "c04", "text": "Lose 30 lbs in 30 days, guaranteed, with compounded tirzepatide. Prescription required.", "violations": ["R5", "R7"], "must_catch": true}
 {"id": "c05", "text": "Zero side effects. Compounded semaglutide, prescription required, provider decides eligibility.", "violations": ["R8"], "must_catch": true}
 {"id": "c06", "text": "Compounded semaglutide with the same active ingredient as Wegovy. Prescription required; a licensed provider decides eligibility.", "violations": ["R2"], "must_catch": false, "note": "edge: 'same active ingredient' framing is flagged in FDA guidance"}
 {"id": "c07", "text": "Talk to a licensed provider about compounded semaglutide. Prescription required. Results vary.", "violations": []}
@@ -11,12 +11,12 @@
 {"id": "c11", "text": "Mounjaro results without the Mounjaro price. Compounded tirzepatide, prescription required, provider decides eligibility.", "violations": ["R2"], "must_catch": false, "note": "edge: implied equivalence without the word 'same'"}
 {"id": "c12", "text": "Compounded semaglutide drops, from $179/mo. Prescription required; a licensed provider decides eligibility. Compounded drugs are not FDA-approved.", "violations": []}
 {"id": "c13", "text": "Clinically proven to melt fat. Compounded semaglutide, prescription required, provider decides.", "violations": ["R3", "R5"], "must_catch": false, "note": "edge: 'clinically proven' implies approved-drug evidence"}
-{"id": "c14", "text": "Risk-free weight loss. Cancel anytime. Compounded tirzepatide, prescription required.", "violations": ["R8"], "must_catch": true}
+{"id": "c14", "text": "Risk-free weight loss. Cancel anytime. Compounded tirzepatide, prescription required.", "violations": ["R7", "R8"], "must_catch": true}
 {"id": "c15", "text": "Get semaglutide online today. No waiting rooms.", "violations": ["R7"], "must_catch": true}
 {"id": "c16", "text": "Members lose an average of 15% body weight. Compounded semaglutide, prescription required, provider decides.", "violations": ["R5"], "must_catch": false, "note": "edge: specific outcome number without substantiation"}
 {"id": "c17", "text": "Ask your provider whether a compounded GLP-1 is appropriate. Prescription required. Individual results vary; side effects are possible.", "violations": []}
 {"id": "c18", "text": "Ozempic alternative, compounded and prescribed by licensed US providers. Prescription required.", "violations": ["R2"], "must_catch": false, "note": "edge: 'alternative' can imply substitutability; label as violation per conservative policy"}
-{"id": "c19", "text": "It's basically Zepbound, just cheaper. Prescription required; compounded.", "violations": ["R2"], "must_catch": true}
+{"id": "c19", "text": "It's basically Zepbound, just cheaper. Prescription required; compounded.", "violations": ["R2", "R7"], "must_catch": true}
 {"id": "c20", "text": "Real care from licensed providers. If prescribed, compounded tirzepatide ships in temperature-controlled packaging. Prescription required.", "violations": []}
 {"id": "c21", "text": "Effortless weight loss, starting this week. Compounded semaglutide, prescription required; provider decides.", "violations": ["R5"], "must_catch": true}
 {"id": "c22", "text": "The generic version of Zepbound is here. Compounded tirzepatide, prescription required, provider decides.", "violations": ["R1", "R2"], "must_catch": true}

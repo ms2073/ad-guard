@@ -14,7 +14,7 @@
 {"id": "h18", "text": "Questions about GLP-1s? Book a visit with a licensed US provider. If prescribed, compounded semaglutide ships to you. Prescription required.", "violations": []}
 {"id": "h19", "text": "Our care team checks in every month. Compounded tirzepatide, prescription required; a licensed provider decides.", "violations": []}
 {"id": "h20", "text": "Transparent pricing: $249/month, no hidden fees. Compounded semaglutide. Prescription required; a provider decides.", "violations": []}
-{"id": "h21", "text": "Not FDA-approved: compounded drugs are made by licensed pharmacies for individual patients. Prescription required.", "violations": []}
+{"id": "h21", "text": "Not FDA-approved: compounded drugs are made by licensed pharmacies for individual patients. Prescription required.", "violations": ["R7"], "must_catch": false}
 {"id": "h22", "text": "Weight care built around you, not a 30-day crash plan. Compounded semaglutide, prescription required; provider decides.", "violations": []}
 {"id": "h23", "text": "Prefer drops to injections? Ask your provider about compounded tirzepatide drops. Prescription required.", "violations": []}
 {"id": "h24", "text": "Licensed providers in all 50 states. Compounded GLP-1 care, prescription required. Results vary.", "violations": []}
