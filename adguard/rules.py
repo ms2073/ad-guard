@@ -26,7 +26,7 @@ PATTERNS: dict[str, list[str]] = {
     ],
     "R6": [r"\bDr\.\s+[A-Za-z]+",
            r"[\"“][^\"”]{5,}[\"”]\s*[-–—]\s*[A-Z]"],  # a quote attributed to someone
-    "R8": [r"\b(?:no|zero)\s+side\s+effects\b", r"\brisk[- ]free\b", r"\b(?:100%|totally|completely)\s+safe\b"],
+    "R8": [r"\b(?:no|zero)\s+side\s+effects\b", r"(?<!n't\s)(?<!not\s)\brisk[- ]free\b", r"\b(?:100%|totally|completely)\s+safe\b"],
 }
 COMPILED = {RuleId(rid): [re.compile(p, re.IGNORECASE) for p in ps] for rid, ps in PATTERNS.items()}
 

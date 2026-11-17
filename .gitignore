@@ -4,3 +4,4 @@ __pycache__/
 approved.jsonl
 feedback.jsonl
 .env
+.DS_Store

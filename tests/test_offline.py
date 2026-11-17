@@ -48,6 +48,13 @@ def test_fda_disclaimer_is_not_an_approval_claim():
     assert not rules.check("Compounded drugs are not FDA-approved. Prescription required; a provider decides.")
 
 
+def test_negated_risk_free_is_a_disclosure_not_a_claim():
+    tail = " Compounded semaglutide, prescription required; a licensed provider decides."
+    assert not rules.check("It isn't risk-free: nausea is common." + tail)
+    assert not rules.check("It is not risk-free." + tail)
+    assert {f.rule_id for f in rules.check("Totally risk-free." + tail)} == {"R8"}
+
+
 def test_rules_findings_carry_their_span():
     text = "Generic Ozempic. Compounded, prescription required, provider decides."
     f = next(f for f in rules.check(text) if f.rule_id == "R1")
